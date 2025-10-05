@@ -1,4 +1,4 @@
-let playerScore = 0;
+let humanScore = 0;
 let computerScore = 0;
 
 function getComputerChoice() {
@@ -14,10 +14,27 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-console.log(getComputerChoice());
-
 function getHumanChoice() {
   let humanChoice = prompt("Choose among rock, paper or scissors");
   return humanChoice;
 }
-console.log(getHumanChoice());
+
+function playRound(humanChoice, computerChoice) {
+  humanChoice = humanChoice.toLowerCase().trim();
+  computerChoice = computerChoice.toLowerCase().trim();
+  let winningMessage;
+  if (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "paper" && computerChoice === "rock") ||
+    (humanChoice === "scissors" && computerChoice === "paper")
+  ) {
+    winningMessage = `You win! ${humanChoice} beats ${computerChoice}`;
+    humanScore++;
+  } else if (humanChoice === computerChoice) {
+    winningMessage = `Oops! ${humanChoice} draws ${computerChoice}`;
+  } else {
+    winningMessage = `You lose! ${computerChoice} beats ${humanChoice}`;
+    computerScore++;
+  }
+  return winningMessage;
+}
