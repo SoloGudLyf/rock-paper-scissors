@@ -1,5 +1,11 @@
 let humanScore = 0;
 let computerScore = 0;
+let btn = document.querySelector("#container");
+btn.addEventListener("click", (e) => {
+  let humanSelection = e.target.textContent;
+  let computerSelection = getComputerChoice();
+  playRound(humanSelection, computerSelection);
+});
 
 function getComputerChoice() {
   let computerChoice = Math.floor(Math.random() * 3);
@@ -12,11 +18,6 @@ function getComputerChoice() {
     computerChoice = "scissors";
   }
   return computerChoice;
-}
-
-function getHumanChoice() {
-  let humanChoice = prompt("Choose among rock, paper or scissors");
-  return humanChoice;
 }
 
 function playRound(humanChoice, computerChoice) {
@@ -43,10 +44,6 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame() {
-  let humanSelection = getHumanChoice();
-  let computerSelection = getComputerChoice();
-  playRound(humanSelection, computerSelection);
-
   if (humanScore > computerScore) {
     let winner = `You had ${humanScore} and computer had ${computerScore}. Congratulations! You won`;
     console.log(winner);
@@ -61,5 +58,3 @@ function playGame() {
     return winner;
   }
 }
-
-
