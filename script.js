@@ -1,10 +1,15 @@
 let humanScore = 0;
 let computerScore = 0;
-let btn = document.querySelector("#container");
-btn.addEventListener("click", (e) => {
-  let humanSelection = e.target.textContent;
-  let computerSelection = getComputerChoice();
-  playRound(humanSelection, computerSelection);
+let container = document.querySelector("#container");
+let div = document.createElement("div");
+let winningMessage;
+
+container.addEventListener("click", (e) => {
+  if (e.target.tagName === "BUTTON") {
+    let humanSelection = e.target.textContent;
+    let computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+  }
 });
 
 function getComputerChoice() {
@@ -21,9 +26,8 @@ function getComputerChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-  humanChoice = humanChoice.toLowerCase().trim();
-  computerChoice = computerChoice.toLowerCase().trim();
-  let winningMessage;
+  humanChoice = humanChoice.toLowerCase();
+  computerChoice = computerChoice.toLowerCase();
   if (
     (humanChoice === "rock" && computerChoice === "scissors") ||
     (humanChoice === "paper" && computerChoice === "rock") ||
@@ -40,20 +44,23 @@ function playRound(humanChoice, computerChoice) {
   console.log(winningMessage);
   let consoleMsg = `Player Score: ${humanScore} and Computer Score: ${computerScore}`;
   console.log(consoleMsg);
+  div.innerHTML = winningMessage + "<br>" + consoleMsg + "<br>";
+  container.appendChild(div);
+  announceWinner();
   return winningMessage;
 }
 
-function playGame() {
-  if (humanScore > computerScore) {
+function announceWinner() {
+  if (humanScore === 5) {
     let winner = `You had ${humanScore} and computer had ${computerScore}. Congratulations! You won`;
+    div.innerHTML = winningMessage + "<br>" + winner;
     console.log(winner);
+    computerScore = humanScore = 0;
     return winner;
-  } else if (computerScore > humanScore) {
+  } else if (computerScore === 5) {
     let winner = `You had ${humanScore} and computer had ${computerScore}. Sorry! You lost`;
-    console.log(winner);
-    return winner;
-  } else {
-    let winner = `You had ${humanScore} and computer had ${computerScore}. It's a tie! Let's go again`;
+    div.innerHTML = winningMessage + "<br>" + winner;
+    computerScore = humanScore = 0;
     console.log(winner);
     return winner;
   }
