@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  font-size: 1.5rem;
+  padding: 5px;
+  margin: 30px;
+  border-radius: 7px;
+}
+
+.rock {
+  background-color: antiquewhite;
+}
+.paper {
+  background-color: white;
+}
+.scissors {
+  background-color: rgba(0, 0, 255, 0.164);
+}
+
+#container {
+  text-align: center;
+}
+
+button:hover {
+  background-color: rgba(201, 199, 199, 0.596);
+}

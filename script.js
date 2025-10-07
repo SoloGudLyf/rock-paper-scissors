@@ -43,11 +43,10 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame() {
-  for (let i = 0; i < 5; i++) {
-    let humanSelection = getHumanChoice();
-    let computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-  }
+  let humanSelection = getHumanChoice();
+  let computerSelection = getComputerChoice();
+  playRound(humanSelection, computerSelection);
+
   if (humanScore > computerScore) {
     let winner = `You had ${humanScore} and computer had ${computerScore}. Congratulations! You won`;
     console.log(winner);
@@ -63,4 +62,4 @@ function playGame() {
   }
 }
 
-playGame();
+
